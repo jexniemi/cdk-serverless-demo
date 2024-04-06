@@ -1,3 +1,4 @@
+import { APIGatewayProxyEvent } from "aws-lambda";
 import * as AWS from "aws-sdk";
 
 const TABLE_NAME = process.env.STORE_TABLE_NAME || "";
@@ -5,8 +6,8 @@ const PRIMARY_KEY = process.env.STORE_PRIMARY_KEY || "";
 
 const db = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async (event: any = {}): Promise<any> => {
-  const requestedItemId = event.pathParameters.id;
+export const handler = async (event: APIGatewayProxyEvent): Promise<any> => {
+  const requestedItemId = event.pathParameters?.id;
   if (!requestedItemId) {
     return {
       statusCode: 400,

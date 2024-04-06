@@ -1,3 +1,4 @@
+import { APIGatewayProxyEvent } from 'aws-lambda';
 import * as AWS from 'aws-sdk';
 
 const TABLE_NAME = process.env.STORE_TABLE_NAME || '';
@@ -8,7 +9,7 @@ const DYNAMODB_EXECUTION_ERROR = `Error: Execution update, caused a Dynamodb err
 
 const db = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async (event: any = {}): Promise<any> => {
+export const handler = async (event: APIGatewayProxyEvent): Promise<any> => {
     if (!event.body) {
         return {
             statusCode: 400,
@@ -16,7 +17,7 @@ export const handler = async (event: any = {}): Promise<any> => {
         };
     }
 
-    const editedItemId = event.pathParameters.id;
+    const editedItemId = event.pathParameters?.id;
     if (!editedItemId) {
         return {
             statusCode: 400,

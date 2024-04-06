@@ -1,10 +1,11 @@
+import { APIGatewayProxyEvent } from 'aws-lambda';
 import * as AWS from 'aws-sdk';
 
 const TABLE_NAME = process.env.STORE_TABLE_NAME || '';
 
 const db = new AWS.DynamoDB.DocumentClient();
 
-export const handler = async (event: any): Promise<any> => {
+export const handler = async (event: APIGatewayProxyEvent): Promise<any> => {
   const params = {
     TableName: TABLE_NAME,
   };
