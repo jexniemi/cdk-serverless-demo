@@ -1,6 +1,13 @@
-# Welcome to your CDK TypeScript project
+# cdk-serverless-demo
 
 A simple serverless CRUD application using Lambdas, API Gateway and DynamoDB.
+
+Includes API Gateway endpoints and Lambdas for:
+- Creating a post
+- Getting a post
+- Getting all posts
+- Updating a post
+- Deleting a post
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
